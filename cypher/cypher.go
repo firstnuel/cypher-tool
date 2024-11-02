@@ -4,58 +4,69 @@ import "fmt"
 
 func CypherTool() {
 
-	fmt.Println()
-	fmt.Println("Welcome to the Cypher Tool!")
+	fmt.Println("\nWelcome to the Cypher Tool!")
 	fmt.Println()
 
 	choice := ""
 	show_operations()
 
 	for {
-
 		choice = getInput("Enter choice: ", []string{"1", "2", "3"})
 
-		if choice == "1" {
+		switch choice {
+		case "1":
 			show_cypher_options()
 			cypherChoice := getInput("Enter cypher choice: ", []string{"1", "2", "3", "4"})
 
-			if cypherChoice == "1" {
-				encrypt_rot13()
+			if !handleCypherChoice(cypherChoice) {
+				fmt.Println("\nThanks for using our group's cypher tool!")
+				return
 			}
-			if cypherChoice == "2" {
-				encrypt_reverse()
-			}
-			if cypherChoice == "3" {
-				encrypt_vigenere()
-			}
-			if cypherChoice == "4" {
-				show_operations()
-			}
-		}
 
-		if choice == "2" {
+		case "2":
 			show_decrypt_options()
 			decryptChoice := getInput("Enter decrypt choice: ", []string{"1", "2", "3", "4"})
 
-			if decryptChoice == "1" {
-				decrypt_rot13()
+			if !handleDecryptChoice(decryptChoice) {
+				fmt.Println("\nThanks for using our group's cypher tool!")
+				return
 			}
-			if decryptChoice == "2" {
-				decrypt_reverse()
-			}
-			if decryptChoice == "3" {
-				decrypt_vigenere()
-			}
-			if decryptChoice == "4" {
-				show_operations()
-			}
-		}
 
-		if choice == "3" {
-			break
+		case "3":
+			fmt.Println("\nThanks for using our group's cypher tool!")
+			return
 		}
 	}
-	fmt.Println()
-	fmt.Println("Thanks for using our groups cypher tool!")
-	fmt.Println()
+}
+
+func handleCypherChoice(choice string) bool {
+	switch choice {
+	case "1":
+		encrypt_rot13()
+	case "2":
+		encrypt_reverse()
+	case "3":
+		encrypt_vigenere()
+	case "4":
+		show_operations()
+	default:
+		return true
+	}
+	return shouldContinue()
+}
+
+func handleDecryptChoice(choice string) bool {
+	switch choice {
+	case "1":
+		decrypt_rot13()
+	case "2":
+		decrypt_reverse()
+	case "3":
+		decrypt_vigenere()
+	case "4":
+		show_operations()
+	default:
+		return true
+	}
+	return shouldContinue()
 }

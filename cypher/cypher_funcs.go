@@ -81,7 +81,7 @@ func shift13(r rune) rune {
 }
 
 func encrypt_rot13() {
-	fmt.Println()
+
 	s := getInput("Enter the message to encrypt (rot13): ", []string{})
 	if s == "" {
 		fmt.Println("No message entered!")
@@ -98,7 +98,7 @@ func encrypt_rot13() {
 }
 
 func decrypt_rot13() {
-	fmt.Println()
+
 	s := getInput("Enter the message to decrypt (rot13): ", []string{})
 	if s == "" {
 		fmt.Println("No message entered!")
@@ -127,7 +127,6 @@ func reverseAlphabet(r rune) rune {
 
 func encrypt_reverse() {
 
-	fmt.Println()
 	s := getInput("Enter the message to encrypt (reverse): ", []string{})
 	if s == "" {
 		fmt.Println("No message entered!")
@@ -146,7 +145,6 @@ func encrypt_reverse() {
 
 func decrypt_reverse() {
 
-	fmt.Println()
 	s := getInput("Enter the message to encrypt (reverse): ", []string{})
 	if s == "" {
 		fmt.Println("No message entered!")
@@ -164,7 +162,7 @@ func decrypt_reverse() {
 }
 
 func encrypt_vigenere() {
-	fmt.Println()
+
 	text := getInput("Enter the message to encrypt (vigenere): ", []string{})
 	if text == "" {
 		fmt.Println("No message entered!")
@@ -199,7 +197,7 @@ func encrypt_vigenere() {
 }
 
 func decrypt_vigenere() {
-	fmt.Println()
+
 	text := getInput("Enter the message to decrypt (vigenere): ", []string{})
 	if text == "" {
 		fmt.Println("No message entered!")
@@ -230,4 +228,9 @@ func decrypt_vigenere() {
 	fmt.Println("Decrypted message using Vigenere and key", keyword+":")
 	fmt.Println(string(decrypted))
 	fmt.Println()
+}
+
+func shouldContinue() bool {
+	toContinue := getInput("Perform another operation? (y/n): ", []string{"y", "n", "Y", "N"})
+	return strings.ToLower(toContinue) == "y"
 }
