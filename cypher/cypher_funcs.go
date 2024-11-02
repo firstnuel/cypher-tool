@@ -8,16 +8,21 @@ import (
 )
 
 func show_operations() {
-	fmt.Println()
-	fmt.Println("Select operation (1/2):")
-	fmt.Print("1. Encrypt.\n2. Decrypt.\n\n")
+	fmt.Println("Select operation (1/2/3):")
+	fmt.Print("1. Encrypt.\n2. Decrypt.\n3. Exit.\n\n")
 
 }
 
 func show_cypher_options() {
 	fmt.Println()
-	fmt.Println("Select cypher (1/2):")
+	fmt.Println("Select cypher (1/2/3):")
 	fmt.Print("1. ROT13.\n2. Reverse.\n3. Vigenere.\n\n")
+}
+
+func show_decrypt_options() {
+	fmt.Println()
+	fmt.Println("Select decrypt (1/2/3):")
+	fmt.Print("1. Decrypt ROT13.\n2. Decrypt Reverse.\n3. Decrypt Vigenere.\n\n")
 
 }
 
@@ -88,7 +93,24 @@ func encrypt_rot13() {
 	for i := 0; i < len(runes); i++ {
 		runes[i] = shift13(runes[i])
 	}
+	fmt.Println("Encrypted message using rot13:")
+	fmt.Println(string(runes))
+	fmt.Println()
+}
 
+func decrypt_rot13() {
+	fmt.Println()
+	s := getInput("Enter the message to decrypt (rot13): ", []string{})
+	if s == "" {
+		fmt.Println("No message entered!")
+		return
+	}
+
+	runes := []rune(s)
+	for i := 0; i < len(runes); i++ {
+		runes[i] = shift13(runes[i])
+	}
+	fmt.Println("Decrypted message using rot13:")
 	fmt.Println(string(runes))
 	fmt.Println()
 }
@@ -117,13 +139,32 @@ func encrypt_reverse() {
 	for i := 0; i < len(runes); i++ {
 		runes[i] = reverseAlphabet(runes[i])
 	}
-
+	fmt.Println("Encrypted message using reverse:")
 	fmt.Println(string(runes))
 	fmt.Println()
 
 }
-func encrypt_vigenere() {
 
+func decrypt_reverse() {
+
+	fmt.Println()
+	s := getInput("Enter the message to encrypt (reverse): ", []string{})
+	if s == "" {
+		fmt.Println("No message entered!")
+		return
+	}
+
+	runes := []rune(s)
+	for i := 0; i < len(runes); i++ {
+		runes[i] = reverseAlphabet(runes[i])
+	}
+	fmt.Println("Decrypted message using reverse:")
+	fmt.Println(string(runes))
+	fmt.Println()
+
+}
+
+func encrypt_vigenere() {
 	fmt.Println()
 	text := getInput("Enter the message to encrypt (vigenere): ", []string{})
 	if text == "" {
@@ -141,7 +182,7 @@ func encrypt_vigenere() {
 
 	for i := 0; i < len(text); i++ {
 		char := text[i]
-		shift := keyword[i%keywordLength] - 'A'
+		shift := (keyword[i%keywordLength] - 'a') % 26
 
 		if char >= 'a' && char <= 'z' {
 			encrypted[i] = 'a' + (char-'a'+shift)%26
@@ -152,27 +193,40 @@ func encrypt_vigenere() {
 		}
 	}
 
+	fmt.Println("Encrypted message using Vigenere and key", keyword+":")
 	fmt.Println(string(encrypted))
 	fmt.Println()
 }
+func decrypt_vigenere() {
+	fmt.Println()
+	text := getInput("Enter the message to decrypt (vigenere): ", []string{})
+	if text == "" {
+		fmt.Println("No message entered!")
+		return
+	}
+	keyword := getInput("Enter key: ", []string{})
+	if keyword == "" {
+		fmt.Println("No key entered!")
+		return
+	}
 
-// DecryptVigenere decrypts the input text using the Vigenère cipher and a keyword
-// func DecryptVigenere(text, keyword string) string {
-// 	decrypted := make([]byte, len(text))
-// 	keywordLength := len(keyword)
+	decrypted := make([]byte, len(text))
+	keywordLength := len(keyword)
 
-// 	for i := 0; i < len(text); i++ {
-// 		char := text[i]
-// 		shift := keyword[i%keywordLength] - 'A' // Assuming keyword is in uppercase
+	for i := 0; i < len(text); i++ {
+		char := text[i]
+		shift := (keyword[i%keywordLength] - 'a') % 26
 
-// 		if char >= 'a' && char <= 'z' { // Lowercase letters
-// 			decrypted[i] = 'a' + (char-'a'-shift+26)%26
-// 		} else if char >= 'A' && char <= 'Z' { // Uppercase letters
-// 			decrypted[i] = 'A' + (char-'A'-shift+26)%26
-// 		} else { // Non-letter characters stay the same
-// 			decrypted[i] = char
-// 		}
-// 	}
+		if char >= 'a' && char <= 'z' {
+			decrypted[i] = 'a' + (char-'a'-shift+26)%26
+		} else if char >= 'A' && char <= 'Z' {
+			decrypted[i] = 'A' + (char-'A'-shift+26)%26
+		} else {
+			decrypted[i] = char
+		}
+	}
 
-// 	return string(decrypted)
-// }
+	fmt.Println("Decrypted message using Vigenere and key", keyword+":")
+	fmt.Println(string(decrypted))
+	fmt.Println()
+}
