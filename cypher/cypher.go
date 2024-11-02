@@ -9,9 +9,9 @@ func CypherTool() {
 	fmt.Println()
 
 	choice := ""
+	show_operations()
 
 	for {
-		show_operations()
 
 		choice = getInput("Enter choice: ", []string{"1", "2", "3"})
 
