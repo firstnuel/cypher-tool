@@ -17,7 +17,7 @@ func CypherTool() {
 
 		if choice == "1" {
 			show_cypher_options()
-			cypherChoice := getInput("Enter cypher choice: ", []string{"1", "2", "3"})
+			cypherChoice := getInput("Enter cypher choice: ", []string{"1", "2", "3", "4"})
 
 			if cypherChoice == "1" {
 				encrypt_rot13()
@@ -28,11 +28,14 @@ func CypherTool() {
 			if cypherChoice == "3" {
 				encrypt_vigenere()
 			}
+			if cypherChoice == "4" {
+				show_operations()
+			}
 		}
 
 		if choice == "2" {
 			show_decrypt_options()
-			decryptChoice := getInput("Enter decrypt choice: ", []string{"1", "2", "3"})
+			decryptChoice := getInput("Enter decrypt choice: ", []string{"1", "2", "3", "4"})
 
 			if decryptChoice == "1" {
 				decrypt_rot13()
@@ -43,7 +46,9 @@ func CypherTool() {
 			if decryptChoice == "3" {
 				decrypt_vigenere()
 			}
-
+			if decryptChoice == "4" {
+				show_operations()
+			}
 		}
 
 		if choice == "3" {

@@ -14,14 +14,14 @@ func show_operations() {
 
 func show_cypher_options() {
 	fmt.Println()
-	fmt.Println("Select cypher (1/2/3):")
-	fmt.Print("1. ROT13.\n2. Reverse.\n3. Vigenere.\n\n")
+	fmt.Println("Select cypher (1/2/3/4):")
+	fmt.Print("1. ROT13.\n2. Reverse.\n3. Vigenere. \n4. Back.\n\n\n")
 }
 
 func show_decrypt_options() {
 	fmt.Println()
-	fmt.Println("Select decrypt (1/2/3):")
-	fmt.Print("1. Decrypt ROT13.\n2. Decrypt Reverse.\n3. Decrypt Vigenere.\n\n")
+	fmt.Println("Select decrypt (1/2/3/4):")
+	fmt.Print("1. Decrypt ROT13.\n2. Decrypt Reverse.\n3. Decrypt Vigenere. \n4. Back.\n\n\n")
 
 }
 
