@@ -10,7 +10,6 @@ import (
 func show_operations() {
 	fmt.Println("Select operation (1/2/3):")
 	fmt.Print("1. Encrypt.\n2. Decrypt.\n3. Exit.\n\n")
-
 }
 
 func show_cypher_options() {
@@ -196,7 +195,9 @@ func encrypt_vigenere() {
 	fmt.Println("Encrypted message using Vigenere and key", keyword+":")
 	fmt.Println(string(encrypted))
 	fmt.Println()
+
 }
+
 func decrypt_vigenere() {
 	fmt.Println()
 	text := getInput("Enter the message to decrypt (vigenere): ", []string{})
