@@ -48,14 +48,3 @@ func decrypt_rot13() {
 	fmt.Println(string(runes))
 	fmt.Println()
 }
-
-func reverseAlphabet(r rune) rune {
-
-	if r >= 'a' && r <= 'z' {
-		return 'a' + ('z' - r)
-	}
-	if r >= 'A' && r <= 'Z' {
-		return 'A' + ('Z' - r)
-	}
-	return r
-}
