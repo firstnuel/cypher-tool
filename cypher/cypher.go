@@ -8,9 +8,9 @@ func CypherTool() {
 	fmt.Println()
 
 	choice := ""
-	show_operations()
 
 	for {
+		show_operations()
 		choice = getInput("Enter choice: ", []string{"1", "2", "3"})
 
 		switch choice {
@@ -37,36 +37,4 @@ func CypherTool() {
 			return
 		}
 	}
-}
-
-func handleCypherChoice(choice string) bool {
-	switch choice {
-	case "1":
-		encrypt_rot13()
-	case "2":
-		encrypt_reverse()
-	case "3":
-		encrypt_vigenere()
-	case "4":
-		show_operations()
-	default:
-		return true
-	}
-	return shouldContinue()
-}
-
-func handleDecryptChoice(choice string) bool {
-	switch choice {
-	case "1":
-		decrypt_rot13()
-	case "2":
-		decrypt_reverse()
-	case "3":
-		decrypt_vigenere()
-	case "4":
-		show_operations()
-	default:
-		return true
-	}
-	return shouldContinue()
 }
